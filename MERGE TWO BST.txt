@@ -1,0 +1,54 @@
+// Do inorder traversal of first bst.
+void inorder1(Node *p, vector<int>&v1 )
+{
+    if(p==NULL)
+      return;
+    inorder1(p->left,v1);
+    v1.push_back(p->data);
+    inorder1(p->right,v1);
+}
+
+// Do inorder traversal of second bst.
+
+void inorder2(Node *q, vector<int>&v2 )
+{
+    if(q==NULL)
+      return;
+    inorder2(q->left,v2);
+    v2.push_back(q->data);
+    inorder2(q->right,v2);
+}
+
+vector<int> merge(Node *root1, Node *root2)
+{
+   //Your code here
+   
+   vector<int> v;
+   vector<int> v1;
+   vector<int> v2;
+   
+     if(root1==NULL && root2==NULL)
+     {
+         return v;
+     }
+     
+     inorder1(root1,v1);
+     inorder2(root2,v2);
+     
+     for(int i=0;i<v1.size();i++)
+     {
+         v.push_back(v1[i]);
+         
+     }
+      
+     for(int i=0;i<v2.size();i++)
+     {
+         v.push_back(v2[i]);
+         
+     }
+     
+     // sort the vector after pushing inorder traversal of first & second bst.
+     sort(v.begin(),v.end());
+      return v;
+     
+}
